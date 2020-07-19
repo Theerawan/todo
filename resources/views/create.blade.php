@@ -1,5 +1,5 @@
 @extends('layout.master')
-@section('title', "crate")
+@section('title', "create")
 @section('content')
 <div class="container">
     <h1><i class="fa fa-list"></i> Todo List ::</h1>
@@ -11,16 +11,17 @@
                 </h4>
             </div>
             <div class="panel-body">
-                <form action="/store" role="form">
+                <form action="/store" method="POST" role="form">
+                    @csrf
                     <div class="form-group">
                         <label for="inputName">กรอกชื่อรายการ :: </label>
-                        <input type="text" name="name" placeholder="ชื่อรายการ" class="form-control">
+                        <input type="text" name="detail" placeholder="ชื่อรายการ" required class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="selectCategory">เลือกหมวดหมู่ :: </label>
                         <select name="category_id" id="" class="form-control">
                             @foreach($categories as $item)
-                        <option value="{{$item->id}}">{{$item->name}}</option>
+                                <option value="{{$item->id}}">{{$item->name}}</option>
                             @endforeach
                         </select>
                     </div>
