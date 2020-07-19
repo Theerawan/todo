@@ -38,7 +38,7 @@ class HomeController extends Controller
         $category_id = $request->input('category_id');
 
         $post = new Post();
-        $post->user_id = 1;
+        $post->user_id = auth()->user()->id;
         $post->status = 0;
         $post->detail =$detail;
         $post->category_id = $category_id;

@@ -12,7 +12,13 @@
 <body>
     <header> <a href="/">หน้าแรก </a>|<a href="/create"> create </a>|<a href="/login"> login </a></header>
     <hr>
-    <div>
+    <div class="container">
+        <h1><i class="fa fa-list"></i> Todo List ::</h1>
+        @if(auth()->check())
+        สวัสดี, {{auth()->user()->name}} | <a href="/logout">ออกจากระบบ</a>
+        @else
+        สวัสดี, บุคคลทั่วไป โปรด <a href="/login">เข้าสู่ระบบ</a>
+        @endif
 
             @yield("content")
 

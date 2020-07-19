@@ -1,5 +1,7 @@
 <?php
 
+use GuzzleHttp\Middleware;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,12 +19,19 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 
 // });
-Route::get("/", "HomeController@index");
-// Route::get("/contact", "HomeController@contact");
-// Route::get("/about", "HomeController@about");
+Route::get("/", "HomeController@index")->middleware("auth");
 
-Route::get("/create", "HomeController@create");
-Route::get("/login", "HomeController@login");
+Route::get("/create", "HomeController@create")->middleware("auth");
+//Route::get("/login", "HomeController@login");
 
-Route::post("/store", "HomeController@store");
-Route::get("/delete/(id)", "HomeController@detete");
+Route::post("/store", "HomeController@store")->middleware("auth");
+Route::get("/delete/(id)", "HomeController@detete")->middleware("auth");
+
+Auth::routes();
+
+Auth::routes();
+
+Route::get('/logout', function (){
+    Auth::logout();
+    return redirect("/login");
+});
