@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     public function index(){
-        $posts = Post::paginate(3);
+        $posts = Post::where('user_id',auth()->user()->id)->paginate(3);
         $data = [
             'posts' => $posts
         ];
