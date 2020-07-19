@@ -29,4 +29,12 @@ class HomeController extends Controller
     public function delate($id){
 
     }
+
+    public function contact(){
+        return view('contact');
+    }
+
+    public function about(){
+        return view('about');
+    }
 }
